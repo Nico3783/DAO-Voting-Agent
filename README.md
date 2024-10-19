@@ -17,35 +17,35 @@ on proposals.
 
 ## Project Structure ##
 
-src/
-  ├── agent.py                # Main agent logic
-  ├── analyze.py              # OpenAI analysis on proposals
-  ├── interaction.py          # User interaction logic
-  ├── main.py                 # Entry point for running the agent
-  ├── proposals.py            # Fetches active proposals
-  ├── web3_integration.py     # Handles Web3 interaction, balance retrieval, and voting
-  ├── app.py                  #
-  └── logging_config.py       # Logging functions for the project that records Agent interactions
+* Source Files (src/):
+agent.py: Main agent logic.
+analyze.py: OpenAI analysis on proposals.
+interaction.py: User interaction logic.
+main.py: Entry point for running the agent.
+proposals.py: Fetches active proposals.
+web3_integration.py: Handles Web3 interaction, balance retrieval, and voting.
+app.py: (You may want to describe this file here).
+logging_config.py: Logging functions for the project that record Agent interactions.
 
 
-config/
-  ├── settings.py             # Configuration settings and environment variables
-  └── generate_key_pair.py    # Key pair generation for authentication and encryption
+* Configuration Files (config/):
+settings.py: Configuration settings and environment variables.
+generate_key_pair.py: Key pair generation for authentication and encryption.
+Other Files:
 
-.gitignore                     # Files and folders to ignore in version control
-.env                           # Environment variables (e.g., API keys, wallet address)
-dao_voting_agent.log          # Log file that records processes and Agent/User interactions
-README.md                     # Project documentation
-deploy.sh                     # Deployment script for publishing the agent
-requirements.txt              # Python dependencies for the project
-
+.gitignore: Specifies files and folders to ignore in version control.
+.env: Environment variables (e.g., API keys, wallet address).
+dao_voting_agent.log: Log file that records processes and Agent/User interactions.
+README.md: Project documentation.
+deploy.sh: Deployment script for publishing the agent.
+requirements.txt: Python dependencies for the project.
 
 
 ## Setup Instructions
 * Clone the repository:
   git clone https://github.com/Nico3783/DAO-Voting-Agent
   cd DAO-Voting-Agent
-
+ 
 ## Install dependencies: 
 * Install the required Python packages listed in the requirements.txt file:
   pip install -r requirements.txt
