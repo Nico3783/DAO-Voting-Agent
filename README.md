@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-## DAO VOTING AGENT ##
+### DAO VOTING AGENT ###
 
 This project implements an AI-powered DAO Voting Agent designed to interact with decentralized autonomous 
 organizations (DAOs) on the Ethereum blockchain. The agent leverages OpenAI to analyze on-chain and off-chain proposals
@@ -18,23 +17,28 @@ on proposals.
 
 ## Project Structure ##
 
-?>> src/
-?   ??? agent.py               # Main agent logic
-?   ??? analyze.py             # OpenAI analysis on proposals
-?   ??? interaction.py         # User interaction logic
-?   ??? main.py                # Entry point for running the agent
-?   ??? proposals.py           # Fetches active proposals
-?   ??? web3_integration.py    # Handles Web3 interaction, balance retrieval, and voting
-?   ??? logging_config.py      # logging functions for the project that records Agent interactions
-?>> config/
-?   ??? settings.py            # Configuration settings and environment variables
-?   ??? generate_key_pair.py   # Key pair generation for authentication and encryption
-??? .env                       # Environment variables (e.g., API keys, wallet address)
-??? .gitignore                 # Files and folders to ignore in version control
-??? dao_voting_agent.log       # log files that records processes and Agent/User interactions
-??? README.md                  # Project documentation (this file)
-??? deploy.sh                  # Deployment script for publishing the agent
-??? requirements.txt           # Python dependencies for the project
+src/
+  ├── agent.py                # Main agent logic
+  ├── analyze.py              # OpenAI analysis on proposals
+  ├── interaction.py          # User interaction logic
+  ├── main.py                 # Entry point for running the agent
+  ├── proposals.py            # Fetches active proposals
+  ├── web3_integration.py     # Handles Web3 interaction, balance retrieval, and voting
+  ├── app.py                  #
+  └── logging_config.py       # Logging functions for the project that records Agent interactions
+
+
+config/
+  ├── settings.py             # Configuration settings and environment variables
+  └── generate_key_pair.py    # Key pair generation for authentication and encryption
+
+.gitignore                     # Files and folders to ignore in version control
+.env                           # Environment variables (e.g., API keys, wallet address)
+dao_voting_agent.log          # Log file that records processes and Agent/User interactions
+README.md                     # Project documentation
+deploy.sh                     # Deployment script for publishing the agent
+requirements.txt              # Python dependencies for the project
+
 
 
 ## Setup Instructions
@@ -64,17 +68,17 @@ on proposals.
 
 ### HOW TO USE ###
 **Running the Agent**
-* Main Execution: Run the main agent script to interact with the Ethereum network and analyze proposals:
+* Main Execution:* Run the main agent script to interact with the Ethereum network and analyze proposals:
   python src/main.py
 
 
-* Key Functionalities:
+## Key Functionalities:
 - The agent will fetch active DAO proposals using the fetch_active_proposals() function from proposals.py.
 - Proposal analysis is performed by the analyze_proposals() function in analyze.py using OpenAI.
 - Based on the analysis, the agent can cast votes on the proposals, using the submit_vote() function from web3_integration.py.
 
 
-* Log Output: 
+## Log Output: 
   Log files will be generated for every key action taken by the agent (fetching proposals, analyzing, voting). Logs can be found under /logs for troubleshooting and verification.
 
 
@@ -127,8 +131,8 @@ Logs are essential for monitoring the agent�s activities, including when propo
 
 ##### CONTACT DEVELOPER FOR MORE FOLLOW UPS #####
 * Name: Nicholas Oluwakayode
-For any inquiries or support, feel free to reach out to me at [oluwakayodenicholas1@gmail.com]
+For any inquiries or support, feel free to reach out to me at :
 (mailto:oluwakayodenicholas1@gmail.com) or (mailto:sparkdigitals83@gmail.com).
-=======
-# DAO-Voting-Agent
->>>>>>> ffe91cf4ad007d07507c6673694416631039bece
+
+
+### DAO VOTING AGENT ###
