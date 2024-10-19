@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment (if using venv)
+venv/
+env/
+
+# Flask-related files
+instance/
+*.sqlite3
+*.db
+*.log
+*.pid
+
+# Environment variables
+.env
+.env.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# macOS specific files
+.DS_Store
+
+# Log files
+logs/
+
+# System-specific files
+Thumbs.db
+Desktop.ini
+
+# PyCharm-specific files (IDE you mentioned you're using)
+.idea/
+*.iml
+
+# Python test discovery
+.pytest_cache/
+.tox/
+
+# Coverage reports
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Build artifacts and distribution directories
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Compiled libraries
+*.so
+*.dylib
+*.dll
+
+# Docker and containerization (if applicable in future)
+docker-compose.yml
+Dockerfile
+
+# Heroku related files (if not keeping in the repo)
+Procfile
+.heroku/
+
+# Configurations
+config/settings.py
+config/*.key  # If you're generating key pairs
+config/*.pem  # For private keys if generated
+
+# Miscellaneous
+node_modules/
+*.bak
+*.swp
