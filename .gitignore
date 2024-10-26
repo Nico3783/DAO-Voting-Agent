@@ -76,3 +76,8 @@ config/*.pem  # For private keys if generated
 node_modules/
 *.bak
 *.swp
+
+
+# Added by cargo
+
+/target
