@@ -1,7 +1,7 @@
 # import logging
 from theoriq import Agent, AgentConfig
 from proposals import fetch_active_proposals
-from analyze import analyze_proposals, chat_with_openai_conversational  # Import the OpenAI function for conversation
+from analyze import analyze_proposals, chat_with_openai_conversational  #Import the OpenAI function for conversation
 from web3_integration import connect_to_web3, get_wallet_balance, cast_vote, get_user_inputs
 from logging_config import setup_logger
 
