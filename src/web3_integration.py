@@ -17,7 +17,27 @@ def get_user_inputs():
     global user_inputs_cache
     if user_inputs_cache is None:
         try:
+            # Welcome message and explanation
+            print("Welcome to the DAO Voting Agent!")
+            print("This agent helps you interact with your DAO for personalized voting and proposal analysis.")
+            print("You will need to provide the following information:")
+            print("1. DAO Space (e.g., Uniswap)")
+            print("2. Contract ABI (as a JSON string)")
+            print("3. Contract Address")
+            print("4. Infura URL (Ethereum network provider URL)")
+            print("5. Wallet Address")
+
+            # Ask for confirmation to proceed
+            proceed = input("Do you want to proceed with entering the inputs?"
+                            " (Type 'yes' to continue): ").strip().lower()
+            if proceed != 'yes':
+                print("Exiting input collection.")
+                return None
+
+            # Initialize Web3 provider
             web3 = Web3(Web3.HTTPProvider())
+
+            # Collect user inputs
             space = input("Enter the DAO space (e.g. Uniswap): ")
             abi = json.loads(input("Enter the contract ABI (as a JSON string): "))
             contract_address = input("Enter the contract address: ")
