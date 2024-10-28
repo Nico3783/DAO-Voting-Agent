@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment (if using venv)
+# Virtual environment
 venv/
 env/
 
@@ -61,7 +61,7 @@ pip-wheel-metadata/
 
 # Docker and containerization (if applicable in future)
 docker-compose.yml
-Dockerfile
+# Dockerfile
 
 # Heroku related files (if not keeping in the repo)
 Procfile

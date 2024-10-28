@@ -26,4 +26,4 @@ COPY . .
 EXPOSE 8080
 
 # And lastly specifying the command to run the application
-CMD ["python", "src/main.py"]
+CMD CMD ["gunicorn", "app:app"]
