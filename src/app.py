@@ -1,13 +1,17 @@
 from flask import Flask, request, jsonify
 from theoriq import AgentConfig
 from theoriq.extra.flask import theoriq_blueprint
-from main import handle_new_proposal, handle_openai_queries, run_agent_theoriq
-from web3_integration import connect_to_web3
+from src.main import handle_new_proposal, handle_openai_queries, run_agent_theoriq
+from src.web3_integration import connect_to_web3
 import os
-from logging_config import setup_logger
+from src.logging_config import setup_logger
 
 # Set up logging
 logger = setup_logger()
+
+logger.debug(f"Environment Variables: {os.environ}")
+logger.debug(f"Current Directory Structure: {os.listdir(os.path.dirname(__file__))}")
+
 
 # Initialize Flask app
 app = Flask(__name__)
