@@ -34,14 +34,13 @@ def get_user_inputs():
                 print("Exiting input collection.")
                 return None
 
-            # Initialize Web3 provider
-            web3 = Web3(Web3.HTTPProvider())
-
             # Collect user inputs
             space = input("Enter the DAO space (e.g. Uniswap): ")
             abi = json.loads(input("Enter the contract ABI (as a JSON string): "))
             contract_address = input("Enter the contract address: ")
             infura_url = input("Enter your Ethereum network provider URL (e.g. Infura URL): ")
+            # Initialize Web3 provider
+            web3 = Web3(Web3.HTTPProvider(infura_url))
             wallet_address = web3.to_checksum_address(input("Enter your wallet address: "))
 
             # Store the inputs in the cache
@@ -116,12 +115,12 @@ def cast_vote(web3, account, contract_address, abi, proposal_id, vote_choice):
         raise e
 
 
-def get_active_onchain_proposals(contract_address, abi):
+def get_active_onchain_proposals(web3, contract_address, abi):
     """
     Fetch active proposals from the on-chain smart contract for a given DAO space.
     """
     try:
-        web3 = Web3(Web3.HTTPProvider())
+        # web3 = Web3(Web3.HTTPProvider())
         contract = web3.eth.contract(address=contract_address, abi=abi)
         proposals = contract.functions.getActiveProposals().call()
         logger.info(f"Active proposals fetched successfully: {proposals}")
