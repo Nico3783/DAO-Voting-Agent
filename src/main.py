@@ -6,10 +6,11 @@ from theoriq.execute import ExecuteContext, ExecuteRequestBody, ExecuteResponse
 from theoriq.schemas import DialogItem
 from theoriq.types import Currency
 
-from analyze import analyze_proposals, analyze_project_status, chat_with_openai_conversational, interactive_conversation
-from proposals import fetch_active_proposals
-from web3_integration import connect_to_web3, get_wallet_balance, cast_vote, get_user_inputs
-from logging_config import setup_logger
+from .analyze import (analyze_proposals, analyze_project_status, chat_with_openai_conversational,
+                      interactive_conversation)
+from .proposals import fetch_active_proposals
+from .web3_integration import connect_to_web3, get_wallet_balance, cast_vote, get_user_inputs
+from .logging_config import setup_logger
 
 # Set up logging (using the centralized logger from logging_config)
 logger = setup_logger()
