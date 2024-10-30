@@ -1,9 +1,9 @@
 # import logging
 from theoriq import Agent, AgentConfig
-from .proposals import fetch_active_proposals
-from .analyze import analyze_proposals, chat_with_openai_conversational
-from .web3_integration import connect_to_web3, get_wallet_balance, cast_vote, get_user_inputs
-from .logging_config import setup_logger
+from src.proposals import fetch_active_proposals
+from src.analyze import analyze_proposals, chat_with_openai_conversational
+from src.web3_integration import connect_to_web3, get_wallet_balance, cast_vote, get_user_inputs
+from src.logging_config import setup_logger
 
 # Set up logging
 logger = setup_logger()

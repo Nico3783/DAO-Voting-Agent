@@ -5,9 +5,9 @@ import openai
 from dotenv import load_dotenv
 from web3 import Web3
 
-from .proposals import fetch_active_proposals
-from .web3_integration import get_user_inputs, get_wallet_balance
-from .logging_config import setup_logger
+from src.proposals import fetch_active_proposals
+from src.web3_integration import get_user_inputs, get_wallet_balance
+from src.logging_config import setup_logger
 
 # Set up logging
 logger = setup_logger()

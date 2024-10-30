@@ -1,7 +1,7 @@
 import requests
 from web3 import Web3
-from .web3_integration import get_user_inputs
-from .logging_config import setup_logger
+from src.web3_integration import get_user_inputs
+from src.logging_config import setup_logger
 
 # Set up logging
 logger = setup_logger()

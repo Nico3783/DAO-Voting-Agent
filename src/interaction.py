@@ -1,8 +1,8 @@
-from .web3_integration import get_wallet_balance, cast_vote, connect_to_web3, get_user_inputs
-from .proposals import fetch_active_proposals
-from .agent import handle_new_proposal
-from .analyze import analyze_proposals
-from .logging_config import setup_logger
+from src.web3_integration import get_wallet_balance, cast_vote, connect_to_web3, get_user_inputs
+from src.proposals import fetch_active_proposals
+from src.agent import handle_new_proposal
+from src.analyze import analyze_proposals
+from src.logging_config import setup_logger
 
 # Set up logging
 logger = setup_logger()

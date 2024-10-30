@@ -1,7 +1,7 @@
 from web3 import Web3
 from dotenv import load_dotenv
 import json
-from .logging_config import setup_logger  # Import the centralized logger setup
+from src.logging_config import setup_logger  # Import the centralized logger setup
 
 # Set up logging
 logger = setup_logger()
