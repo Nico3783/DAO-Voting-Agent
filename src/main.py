@@ -142,7 +142,8 @@ def handle_agent_error(error):
     You are an AI assistant helping with a DAO voting project. An error occurred during the process:
     {error_message}
 
-    Can you explain this error and suggest steps to resolve it? (Remember NOT to use bold format for your response, 
+    Can you explain this error and suggest steps to resolve it? (not more than 2048 array of response)
+    (Remember NOT to use bold format for your response, 
     and do well to respond to users politely and don't address them as the project owner but strictly as users,
     and ensure NOT to mention that You're trained by OpenAI, just be a polite Assistant.)
     """
@@ -152,26 +153,37 @@ def handle_agent_error(error):
 
 
 def run_agent_theoriq(context: ExecuteContext, request_body: ExecuteRequestBody) -> ExecuteResponse:
-    """Theoriq-compliant agent execution function."""
+    """Theoriq-compliant agent execution function that calls the DAO Voting Agent."""
     try:
         logger.info(f"Received request: {context.request_id}")
 
-        # Process user input and generate OpenAI response
+        # Process the last text block from the request body as user input
         last_block = request_body.last_item.blocks[0]
-        text_value = last_block.data.text
-        logger.info(f"Processing user input: {text_value}")
+        user_input = last_block.data.text
+        logger.info(f"Processing user input: {user_input}")
 
-        openai_response = chat_with_openai_conversational(text_value)
-        response_text = f"Hello {text_value} from a Theoriq Agent! Analysis: {openai_response}"
+        # Run the DAO Voting Agent logic
+        try:
+            # Call run_agent() to perform the main agent tasks
+            run_agent()
 
+            # Assume run_agent logs results and displays output. Here, we capture a general success message.
+            response_text = "DAO Voting Agent ran successfully, and proposals were analyzed."
+        except Exception as inner_e:
+            response_text = f"An error occurred while running the DAO Voting Agent: {str(inner_e)}"
+            logger.error(response_text)
+
+        # Build a Theoriq-compatible response
         return context.new_response(
             blocks=[TextItemBlock(text=response_text)],
             cost=TheoriqCost(amount=1, currency=Currency.USDC)
         )
+
     except Exception as e:
-        logger.error(f"Error in running the agent: {str(e)}")
+        # Catch any outer exceptions and handle them as an error response
+        logger.error(f"Error in run_agent_theoriq: {str(e)}")
         return context.new_response(
-            blocks=[TextItemBlock(text=f"An error occurred: {str(e)}")],
+            blocks=[TextItemBlock(text=f"An unexpected error occurred: {str(e)}")],
             cost=TheoriqCost.zero(Currency.USDC)
         )
 

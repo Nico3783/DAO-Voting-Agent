@@ -79,7 +79,7 @@ def analyze_project_status(proposals, project_data, wallet_balance):
     - Wallet Address: {project_data['wallet_address']}
     - Wallet Balance: {wallet_balance} ETH
 
-    Can you give feedback on the project and let me know if anything is missing or incorrect?
+    Can you give feedback on the project (not more than 2048 array of response) and let me know if anything is missing or incorrect?
     (Remember NOT to use bold format for your response, 
     and do well to respond to users politely and don't address them as the project owner but strictly as users,
     and ensure NOT to mention that You're trained by OpenAI, just be a polite Assistant.)
@@ -197,7 +197,8 @@ def analyze_proposals():
         You are an AI assistant helping with a DAO voting project. An error occurred during the process:
         {error_message}
 
-        Can you explain this error and suggest steps to resolve it? (Remember NOT to use bold format for your response, 
+        Can you explain this error and suggest steps to resolve it? (not more than 2048 array of response)
+        (Remember NOT to use bold format for your response, 
         and do well to respond to users politely and don't address them as the project owner but strictly as users,
         and ensure NOT to mention that You're trained by OpenAI, just be a polite Assistant.)
         """
