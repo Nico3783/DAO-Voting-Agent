@@ -5,6 +5,8 @@ from theoriq.biscuit import TheoriqCost
 from theoriq.execute import ExecuteContext, ExecuteRequestBody, ExecuteResponse
 from theoriq.schemas import DialogItem, TextItemBlock
 from theoriq.types import Currency
+from src.web3_integration import user_inputs_cache
+
 # from src.app import app
 
 from src.analyze import (analyze_proposals, analyze_project_status, chat_with_openai_conversational,
@@ -153,35 +155,45 @@ def handle_agent_error(error):
 
 
 def run_agent_theoriq(context: ExecuteContext, request_body: ExecuteRequestBody) -> ExecuteResponse:
-    """Theoriq-compliant agent execution function that calls the DAO Voting Agent."""
+    """Theoriq-compliant agent execution function that checks for necessary inputs and runs the DAO Voting Agent."""
+
     try:
         logger.info(f"Received request: {context.request_id}")
 
-        # Process the last text block from the request body as user input
+        # Retrieve the last `TextItemBlock` from the request body for user input
         last_block = request_body.last_item.blocks[0]
-        user_input = last_block.data.text
-        logger.info(f"Processing user input: {user_input}")
+        user_input = last_block.data.text[:2000]  # Truncate to avoid overflow issues
 
-        # Run the DAO Voting Agent logic
-        try:
-            # Call run_agent() to perform the main agent tasks
-            run_agent()
+        logger.info(f"User input received: {user_input}")
 
-            # Assume run_agent logs results and displays output. Here, we capture a general success message.
-            response_text = "DAO Voting Agent ran successfully, and proposals were analyzed."
-        except Exception as inner_e:
-            response_text = f"An error occurred while running the DAO Voting Agent: {str(inner_e)}"
-            logger.error(response_text)
+        # Check if inputs are cached; if not, notify the user to submit inputs
+        if user_inputs_cache is None:
+            guidance_message = (
+                "You haven't provided the necessary inputs for DAO analysis. "
+                "Please submit the following details first:\n"
+                "1. DAO Space\n2. Contract ABI\n3. Contract Address\n4. Infura URL\n5. Wallet Address\n"
+                "Once provided, the analysis will proceed automatically."
+            )
 
-        # Build a Theoriq-compatible response
+            # Response to guide the user
+            return context.new_response(
+                blocks=[TextItemBlock(text=guidance_message)],
+                cost=TheoriqCost(amount=1, currency=Currency.USDC)
+            )
+
+        # If inputs are available, proceed to run the main agent function
+        run_agent()  # Runs the main agent tasks, including displaying the welcome message and input collection
+        response_text = "DAO Voting Agent is now processing your request based on the provided inputs."
+
+        # Return formatted response for Theoriq interface
         return context.new_response(
-            blocks=[TextItemBlock(text=response_text)],
+            blocks=[TextItemBlock(text=response_text[:2000])],
             cost=TheoriqCost(amount=1, currency=Currency.USDC)
         )
 
     except Exception as e:
-        # Catch any outer exceptions and handle them as an error response
-        logger.error(f"Error in run_agent_theoriq: {str(e)}")
+        # Handle unexpected outer errors
+        logger.error(f"Unexpected error in run_agent_theoriq: {str(e)}")
         return context.new_response(
             blocks=[TextItemBlock(text=f"An unexpected error occurred: {str(e)}")],
             cost=TheoriqCost.zero(Currency.USDC)
